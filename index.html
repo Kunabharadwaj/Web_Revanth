@@ -86,7 +86,60 @@
         </a>
     </button>
 
-    <!--Dialoge, summary, Div-->
+    <!--Div-->
+
+    <div>
+        <p>
+            Hi Revanth
+        </p>
+        <h2>
+            How are you
+        </h2>
+        <button>Click me</button>
+    </div>
+
+    <!--Dialog-->
+
+    <dialog>
+        <button class="closeButton">Close</button>
+        <p>This is a dialog element</p>
+    </dialog>
+    <button class="showMore">Show more info</button>
+
+    <!--Forms-->
+
+    <form post="/post">
+        <label>First Name:</label>
+        <input type="text" placeholder="Bharadwaj"><br>
+        <label>Last Name:</label>
+        <input type="text">
+        <label>Email:</label>
+        <input type="email">
+        <button type="submit">Submit</button>
+    </form>
     <!---Scripts which is nothing but JS-->
+    <script>
+
+        // add open attr to the dialoge when show more info is clicked
+        // remove open attr to the dialoge when close button is clicked
+
+        // variables which are used to store some values
+
+        const showButton = document.querySelector(".showMore");
+        const closeButton = document.querySelector(".closeButton");
+        const dialog = document.querySelector("dialog");
+        console.log("dialog");
+
+        // listen to a event called click on showmore when happens show dialog
+
+        showButton.addEventListener("click", function(){
+            dialog.showModal();
+        } );
+
+        closeButton.addEventListener("click", function(){
+            dialog.close();
+        });
+
+    </script>
 </body>
 </html>
