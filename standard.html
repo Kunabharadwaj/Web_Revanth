@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Layouts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .layout-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .layout-switcher button {
+            background: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .layout-switcher button:hover {
+            background: #eee;
+        }
+
+        /* Navigation */
+        nav {
+            background: #333;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Header */
+        .page-header {
+            background: #f4f4f4;
+            padding: 6rem 2rem 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Common Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        h2 { font-size: 2rem; margin: 2rem 0 1rem; }
+        p { margin-bottom: 1.5rem; line-height: 1.6; }
+
+        /* Standard Layout */
+        .standard-layout .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Two Column Layout */
+        .two-column-layout .content-wrapper {
+            display: grid;
+            grid-template-areas: "main sidebar";
+            grid-template-columns: 2.5fr 1fr;
+            gap: 3rem;
+            padding: 2rem 1rem;
+        }
+
+        .main-content {
+            grid-area: main;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .widget {
+            margin-bottom: 2rem;
+        }
+
+        .widget h3 {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #333;
+        }
+
+        .widget ul {
+            list-style: none;
+        }
+
+        .widget li {
+            margin-bottom: 0.5rem;
+        }
+
+        .widget a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .two-column-layout .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Layout Display Control */
+        .layout {
+            display: none;
+        }
+        .layout.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-switcher">
+        <button onclick="switchLayout('standard')">Standard Layout</button>
+        <button onclick="switchLayout('two-column')">Two Column Layout</button>
+    </div>
+
+    <!-- Standard Layout -->
+    <div id="standard" class="layout standard-layout active">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <header class="page-header">
+            <h1>Standard Layout</h1>
+            <div>Home > Standard Page</div>
+        </header>
+
+        <main class="content">
+            <h2>Main Content</h2>
+            <p>This is a standard single-column layout perfect for content-focused pages like articles or blog posts. The content is centered and has an optimal width for reading.</p>
+            
+            <img src="/api/placeholder/800/400" alt="Featured Image" class="featured-image">
+            
+            <h2>Article Section</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        </main>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div id="two-column" class="layout two-column-layout">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <header class="page-header">
+            <h1>Two Column Layout</h1>
+            <div>Home > Two Column Page</div>
+        </header>
+
+        <div class="container">
+            <div class="content-wrapper">
+                <main>
+                    <h2>Main Content Area</h2>
+                    <p>This two-column layout is perfect for pages that need a sidebar for additional navigation or related content.</p>
+                    
+                    <img src="/api/placeholder/800/400" alt="Featured Image" class="featured-image">
+                    
+                    <h2>Article Section</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </main>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Category 1</a></li>
+                            <li><a href="#">Category 2</a></li>
+                            <li><a href="#">Category 3</a></li>
+                            <li><a href="#">Category 4</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3>Recent Posts</h3>
+                        <ul>
+                            <li><a href="#">Post Title 1</a></li>
+                            <li><a href="#">Post Title 2</a></li>
+                            <li><a href="#">Post Title 3</a></li>
+                            <li><a href="#">Post Title 4</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchLayout(layout) {
+            document.querySelectorAll('.layout').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.getElementById(layout).classList.add('active');
+        }
+    </script>
+</body>
+</html>
